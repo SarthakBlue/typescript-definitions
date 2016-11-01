@@ -1,2 +1,2 @@
-# typescript-definitions
-TypeScript definitions for Flexmonster Pivot Table Component
+# TypeScript definitions for Flexmonster Pivot Table Component
+

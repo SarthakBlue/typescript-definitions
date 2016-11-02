@@ -1,4 +1,4 @@
-[![Flexmonster Pivot table component](https://scontent-fra3-1.xx.fbcdn.net/v/t1.0-9/14962738_287280838338653_1624207561691913231_n.png?oh=141dc307035c57dd5dde325ab91fcb88&oe=588B6AF9)](http://flexmonster.com)
+[![Flexmonster Pivot table component](https://s3.amazonaws.com/flexmonster/github/fm-github-cover.png)](http://flexmonster.com)
 
 Website: www.flexmonster.com
 

@@ -109,6 +109,108 @@ declare namespace Flexmonster {
         updateData(object: DataSourceParams | Object[]): void;
     }
 
+    interface Report {
+        dataSource?: DataSourceParams;
+        slice?: Slice;
+        options?: Options;
+        conditions?: ConditionalFormat[];
+        formats?: Format[];
+        tableSizes?: {
+            columns?: ColumnSize[],
+            rows?: RowSize[]
+        }
+        localization?: Object | string;
+    }
+
+    interface DataSourceParams {
+        browseForFile?: boolean;
+        catalog?: string;
+        cube?: string;
+        data?: Object[];
+        dataSourceInfo?: string;
+        dataSourceType?: string;
+        fieldSeparator?: string;
+        filename?: string;
+        ignoreQuotedLineBreaks?: boolean;
+        proxyUrl?: string;
+        recordsetDelimiter?: string;
+        binary?: boolean;
+        roles?: string;
+        localeIdentifier?: string;
+        effectiveUserName?: string;
+        customData?: string;
+        hash?: string;
+        username?: string;
+        password?: string;
+    }
+
+    interface Slice {
+        columns?: Hierarchy[];
+        measures?: Measure[];
+        pages?: Hierarchy[];
+        rows?: Hierarchy[];
+        drills?: {
+            drillAll?: boolean,
+            columns?: Object[],
+            rows?: Object[],
+        };
+        expands?: {
+            expandAll?: boolean,
+            columns?: Object[],
+            rows?: Object[]
+        };
+        sorting?: {
+            column?: Object,
+            row?: Object
+        };
+        useOlapFormatting?: boolean;
+    }
+
+    interface Options {
+        chart?: {
+            activeMeasure?: string,
+            activeTupleIndex?: number,
+            autoRange?: boolean,
+            labelsHierarchy?: string,
+            multipleMeasures?: boolean,
+            oneLevel?: boolean,
+            showFilter?: boolean,
+            showLegendButton?: boolean,
+            showMeasures?: boolean,
+            showWarning?: boolean,
+            title?: string,
+            type?: string
+        };
+        grid?: {
+            fitGridlines?: boolean,
+            pagesFilterLayout?: string,
+            showFilter?: boolean,
+            showGrandTotals?: string,
+            showHeaders?: boolean,
+            showHierarchies?: boolean,
+            showHierarchyCaptions?: boolean,
+            showReportFiltersArea?: boolean,
+            showTotals?: boolean,
+            title?: string,
+            type?: string
+        };
+        configuratorActive?: boolean;
+        configuratorButton?: boolean;
+        configuratorMatchHeight?: boolean;
+        datePattern?: string;
+        dateTimePattern?: string;
+        defaultHierarchySortName?: string;
+        drillThrough?: boolean;
+        editing?: boolean;
+        selectEmptyCells?: boolean;
+        showAggregations?: boolean;
+        showCalculatedValuesButton?: boolean;
+        showDefaultSlice?: boolean;
+        showMemberProperties?: boolean;
+        sorting?: string;
+        viewType?: string;
+    }
+
     interface PrintOptions {
         header?: string;
         footer?: string;
@@ -158,63 +260,6 @@ declare namespace Flexmonster {
         showFilters?: boolean;
         url?: string;
         useOlapFormattingInExcel?: boolean;
-    }
-
-    interface DataSourceParams {
-        browseForFile?: boolean,
-        catalog?: string,
-        cube?: string,
-        data?: Object[],
-        dataSourceInfo?: string,
-        dataSourceType?: string,
-        fieldSeparator?: string,
-        filename?: string,
-        ignoreQuotedLineBreaks?: boolean,
-        proxyUrl?: string,
-        recordsetDelimiter?: string,
-        binary?: boolean,
-        roles?: string,
-        localeIdentifier?: string,
-        effectiveUserName?: string,
-        customData?: string,
-        hash?: string,
-        username?: string,
-        password?: string,
-    }
-
-    interface Report {
-        dataSource?: DataSourceParams;
-        slice?: Slice;
-        options?: Options;
-        conditions?: ConditionalFormat[];
-        formats?: Format[];
-        tableSizes?: {
-            columns?: ColumnSize[],
-            rows?: RowSize[]
-        }
-        localization?: Object | string;
-    }
-
-    interface Slice {
-        columns?: Hierarchy[],
-        measures?: Measure[],
-        pages?: Hierarchy[],
-        rows?: Hierarchy[],
-        drills?: {
-            drillAll?: boolean,
-            columns?: Object[],
-            rows?: Object[],
-        },
-        expands?: {
-            expandAll?: boolean,
-            columns?: Object[],
-            rows?: Object[],
-        },
-        sorting?: {
-            column?: Object,
-            row?: Object
-        },
-        useOlapFormatting?: boolean
     }
 
     interface Hierarchy {
@@ -299,48 +344,5 @@ declare namespace Flexmonster {
         measure?: string;
     }
 
-    interface Options {
-        chart?: {
-            activeMeasure?: string,
-            activeTupleIndex?: number,
-            autoRange?: boolean,
-            labelsHierarchy?: string,
-            multipleMeasures?: boolean,
-            oneLevel?: boolean,
-            showFilter?: boolean,
-            showLegendButton?: boolean,
-            showMeasures?: boolean,
-            showWarning?: boolean,
-            title?: string,
-            type?: string
-        };
-        grid?: {
-            fitGridlines?: boolean,
-            pagesFilterLayout?: string,
-            showFilter?: boolean,
-            showGrandTotals?: string,
-            showHeaders?: boolean,
-            showHierarchies?: boolean,
-            showHierarchyCaptions?: boolean,
-            showReportFiltersArea?: boolean,
-            showTotals?: boolean,
-            title?: string,
-            type?: string
-        };
-        configuratorActive?: boolean;
-        configuratorButton?: boolean;
-        configuratorMatchHeight?: boolean;
-        datePattern?: string;
-        dateTimePattern?: string;
-        defaultHierarchySortName?: string;
-        drillThrough?: boolean;
-        editing?: boolean;
-        selectEmptyCells?: boolean;
-        showAggregations?: boolean;
-        showCalculatedValuesButton?: boolean;
-        showDefaultSlice?: boolean;
-        showMemberProperties?: boolean;
-        sorting?: string;
-        viewType?: string;
-    }
+    
 }

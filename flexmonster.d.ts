@@ -65,7 +65,7 @@ declare namespace Flexmonster {
         getCell(rowIdx: number, colIdx: number): Cell;
         getColumns(): Hierarchy[];
         getCondition(id: string): ConditionalFormat;
-        getData(options: { slice?: Slice }, callbackHandler: Function | string, updateHandler: Function | string);
+        getData(options: { slice?: Slice }, callbackHandler: Function | string, updateHandler: Function | string): void;
         getFilter(hierarchyName: string): FilterItem[];
         getFilterProperties(hierarchyName: string): FilterProperties;
         getFormat(measureName: string): Format;

@@ -18,6 +18,7 @@ declare namespace Flexmonster {
         dataerror?: Function;
         datafilecancelled?: Function;
         dataloaded?: Function;
+        datachanged?: Function;
         fieldslistclose?: Function;
         fieldslistopen?: Function;
         filteropen?: Function;

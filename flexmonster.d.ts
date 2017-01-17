@@ -12,6 +12,7 @@ declare namespace Flexmonster {
         componentFolder?: string;
         report?: Report | string;
         global?: Report;
+        customizeCell?: Function;
         // events
         cellclick?: Function;
         celldoubleclick?: Function;
@@ -42,6 +43,7 @@ declare namespace Flexmonster {
         reportfileloaded?: Function;
         runningquery?: Function;
         update?: Function;
+        beforetoolbarcreated?: Function;
     }
 
     interface Pivot {
@@ -108,6 +110,7 @@ declare namespace Flexmonster {
         showGridAndCharts(type?: string, position?: string, multiple?: boolean): void;
         sortValues(axisName: string, type: string, tuple: number[], measureName: string): void;
         updateData(object: DataSourceParams | Object[]): void;
+        customizeCell(customizeCellFunction: Function): void;
     }
 
     interface Report {

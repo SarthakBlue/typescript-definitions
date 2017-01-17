@@ -12,7 +12,7 @@ declare namespace Flexmonster {
         componentFolder?: string;
         report?: Report | string;
         global?: Report;
-        customizeCell?: Function;
+        customizeCell?: (html:string, data:Cell) => string;
         // events
         cellclick?: Function;
         celldoubleclick?: Function;
@@ -110,7 +110,7 @@ declare namespace Flexmonster {
         showGridAndCharts(type?: string, position?: string, multiple?: boolean): void;
         sortValues(axisName: string, type: string, tuple: number[], measureName: string): void;
         updateData(object: DataSourceParams | Object[]): void;
-        customizeCell(customizeCellFunction: Function): void;
+        customizeCell(customizeCellFunction: (html:string, data:Cell) => string): void;
     }
 
     interface Report {

@@ -213,6 +213,7 @@ declare namespace Flexmonster {
         showMemberProperties?: boolean;
         sorting?: string;
         viewType?: string;
+        showAggregationLabels?: boolean;
     }
 
     interface PrintOptions {

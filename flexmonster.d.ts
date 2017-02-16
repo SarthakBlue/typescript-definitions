@@ -44,6 +44,8 @@ declare namespace Flexmonster {
         runningquery?: Function;
         update?: Function;
         beforetoolbarcreated?: Function;
+        // other
+        container?: Element;
     }
 
     interface Pivot {

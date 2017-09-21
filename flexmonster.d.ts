@@ -2,6 +2,8 @@
     flexmonster(params: Flexmonster.Params): Flexmonster.Pivot;
 }
 
+declare function Flexmonster(params: Flexmonster.Params): Flexmonster.Pivot;
+
 declare namespace Flexmonster {
     interface Params {
         // params
@@ -12,7 +14,7 @@ declare namespace Flexmonster {
         componentFolder?: string;
         report?: Report | string;
         global?: Report;
-        customizeCell?: (html:string, data:Cell) => string;
+        customizeCell?: (cell: CellBuilder, data: Cell) => void;
         // events
         cellclick?: Function;
         celldoubleclick?: Function;
@@ -44,8 +46,10 @@ declare namespace Flexmonster {
         runningquery?: Function;
         update?: Function;
         beforetoolbarcreated?: Function;
+        aftergriddraw?: Function;
+        beforegriddraw?: Function;
         // other
-        container?: Element;
+        container?: Element | string;
     }
 
     interface Pivot {
@@ -63,7 +67,6 @@ declare namespace Flexmonster {
         expandAllData(withAllChildren?: boolean): void;
         expandData(hierarchyName: string): void;
         exportTo(type: string, exportOptions?: ExportOptions, callbackHandler?: Function | string): void;
-        fullScreen(): void;
         getAllConditions(): ConditionalFormat[];
         getAllMeasures(): Measure[];
         getAllHierarchies(): Hierarchy[];
@@ -77,7 +80,7 @@ declare namespace Flexmonster {
         getMeasures(): Measure[];
         getMembers(hierarchyName: string, memberName: string, callbackHandler: Function | string): Member[];
         getOptions(): Options;
-        getPages(): Hierarchy[];
+        getReportFilters(): Hierarchy[];
         getReport(format?: string): Report | string;
         getRows(): Hierarchy[];
         getSelectedCell(): Cell;
@@ -112,7 +115,7 @@ declare namespace Flexmonster {
         showGridAndCharts(type?: string, position?: string, multiple?: boolean): void;
         sortValues(axisName: string, type: string, tuple: number[], measureName: string): void;
         updateData(object: DataSourceParams | Object[]): void;
-        customizeCell(customizeCellFunction: (html:string, data:Cell) => string): void;
+        customizeCell(customizeCellFunction: (cell: CellBuilder, data: Cell) => void): void;
     }
 
     interface Report {
@@ -153,7 +156,7 @@ declare namespace Flexmonster {
     interface Slice {
         columns?: Hierarchy[];
         measures?: Measure[];
-        pages?: Hierarchy[];
+        reportFilters?: Hierarchy[];
         rows?: Hierarchy[];
         drills?: {
             drillAll?: boolean,
@@ -169,7 +172,6 @@ declare namespace Flexmonster {
             column?: Object,
             row?: Object
         };
-        useOlapFormatting?: boolean;
     }
 
     interface Options {
@@ -189,7 +191,6 @@ declare namespace Flexmonster {
         };
         grid?: {
             fitGridlines?: boolean,
-            pagesFilterLayout?: string,
             showFilter?: boolean,
             showGrandTotals?: string,
             showHeaders?: boolean,
@@ -202,7 +203,6 @@ declare namespace Flexmonster {
         };
         configuratorActive?: boolean;
         configuratorButton?: boolean;
-        configuratorMatchHeight?: boolean;
         datePattern?: string;
         dateTimePattern?: string;
         defaultHierarchySortName?: string;
@@ -216,6 +216,7 @@ declare namespace Flexmonster {
         sorting?: string;
         viewType?: string;
         showAggregationLabels?: boolean;
+        useOlapFormatting?: boolean;
     }
 
     interface PrintOptions {
@@ -248,7 +249,20 @@ declare namespace Flexmonster {
     interface Cell {
         columnIndex?: number;
         columns?: any[];
+        height?: number;
+        hierarchy?: Hierarchy;
+        isClassicTotalRow?: boolean;
+        isDrillThrough?: boolean;
+        isGrandTotal?: boolean;
+        isGrandTotalColumn?: boolean;
+        isGrandTotalRow?: boolean;
         isTotal?: boolean;
+        isTotalColumn?: boolean;
+        isTotalRow?: boolean;
+        member?: Member;
+        width?: number;
+        x?: number;
+        y?: number;
         label?: string;
         measure?: string;
         rowIndex?: number;
@@ -296,8 +310,8 @@ declare namespace Flexmonster {
 
     interface ConditionalFormat {
         formula?: string;
-        trueStyle?: Style;
-        falseStyle?: Style;
+        format?: Style;
+        formatCSS?: string;
         row?: number;
         column?: number;
         measure?: string;
@@ -311,7 +325,7 @@ declare namespace Flexmonster {
         backgroundColor?: string;
         backgroundImage?: string;
         borderColor?: string;
-        fontSize?: number;
+        fontSize?: string;
         fontWeight?: string;
         fill?: string;
         textAlign?: string;
@@ -351,5 +365,14 @@ declare namespace Flexmonster {
         measure?: string;
     }
 
-    
+    interface CellBuilder {
+        attr?: Object;
+        classes?: string[];
+        style?: Object;
+        tag?: string;
+        text?: string;
+        addClass(value?: string): void;
+        toHtml(): string;
+    }
+
 }

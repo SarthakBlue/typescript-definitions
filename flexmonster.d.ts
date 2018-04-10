@@ -2,8 +2,6 @@
     flexmonster(params: Flexmonster.Params): Flexmonster.Pivot;
 }
 
-declare function Flexmonster(params: Flexmonster.Params): Flexmonster.Pivot;
-
 declare namespace Flexmonster {
     interface Params {
         // params
@@ -14,7 +12,7 @@ declare namespace Flexmonster {
         componentFolder?: string;
         report?: Report | string;
         global?: Report;
-        customizeCell?: (cell: CellBuilder, data: Cell) => void;
+        customizeCell?: (cell: Flexmonster.CellBuilder, data: Flexmonster.Cell) => void;
         // events
         cellclick?: Function;
         celldoubleclick?: Function;
@@ -73,7 +71,7 @@ declare namespace Flexmonster {
         getCell(rowIdx: number, colIdx: number): Cell;
         getColumns(): Hierarchy[];
         getCondition(id: string): ConditionalFormat;
-        getData(options: { slice?: Slice }, callbackHandler: Function | string, updateHandler: Function | string): void;
+        getData(options: { slice?: Slice }, callbackHandler: Function | string, updateHandler?: Function | string): void;
         getFilter(hierarchyName: string): FilterItem[];
         getFilterProperties(hierarchyName: string): FilterProperties;
         getFormat(measureName: string): Format;
@@ -91,7 +89,7 @@ declare namespace Flexmonster {
         getXMLAProviderName(proxyURL: string, callbackHandler: Function | string, username?: string, password?: string): string;
         load(url: string, componentFolder?: string): void;
         on(eventType: string, handler: Function | string): void;
-        off(eventType: string, handler: Function | string): void;
+        off(eventType: string, handler?: Function | string): void;
         open(): void;
         openFieldsList(): void;
         print(options?: PrintOptions): void;
@@ -115,7 +113,24 @@ declare namespace Flexmonster {
         showGridAndCharts(type?: string, position?: string, multiple?: boolean): void;
         sortValues(axisName: string, type: string, tuple: number[], measureName: string): void;
         updateData(object: DataSourceParams | Object[]): void;
+        version: number;
         customizeCell(customizeCellFunction: (cell: CellBuilder, data: Cell) => void): void;
+        fusioncharts?: {
+            getData(options: { type: string; slice?: Slice; prepareDataFunction?: Function }, callbackHandler: Function, updateHandler?: Function): void;
+            getNumberFormat(format: Object): Object;
+        };
+        googlecharts?: {
+            getData(options: { type?: string; slice?: Slice; prepareDataFunction?: Function }, callbackHandler: Function, updateHandler?: Function): void;
+            getNumberFormat(format: Object): Object;
+            getNumberFormatPattern(format: Object): string;
+        };
+        highcharts?: {
+            getData(options: { type?: string; slice?: Slice; xAxisType?: string; valuesOnly?: boolean, withDrilldown?: boolean, prepareDataFunction?: Function }, callbackHandler: Function, updateHandler?: Function): void;
+            getAxisFormat(format: Object): string;
+            getPointXFormat(format: Object): string;
+            getPointYFormat(format: Object): string;
+            getPointZFormat(format: Object): string;
+        }
     }
 
     interface Report {
@@ -190,7 +205,6 @@ declare namespace Flexmonster {
             type?: string
         };
         grid?: {
-            fitGridlines?: boolean,
             showFilter?: boolean,
             showGrandTotals?: string,
             showHeaders?: boolean,

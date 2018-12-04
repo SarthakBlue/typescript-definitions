@@ -206,6 +206,7 @@ declare namespace Flexmonster {
             multipleMeasures?: boolean;
             oneLevel?: boolean;
             showFilter?: boolean;
+            showLegend?: boolean;
             showLegendButton?: boolean;
             showMeasures?: boolean;
             showWarning?: boolean;

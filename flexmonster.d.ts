@@ -23,6 +23,7 @@ declare namespace Flexmonster {
         datachanged?: Function;
         fieldslistclose?: Function;
         fieldslistopen?: Function;
+        filterclose?: Function;
         filteropen?: Function;
         fullscreen?: Function;
         loadingdata?: Function;
@@ -97,6 +98,7 @@ declare namespace Flexmonster {
         off(eventType: string, handler?: Function | string): void;
         open(): void;
         openFieldsList(): void;
+        openFilter(hierarchyName: string): void;
         print(options?: Flexmonster.PrintOptions): void;
         refresh(): void;
         removeAllCalculatedMeasures(): void;

@@ -161,6 +161,7 @@ declare namespace Flexmonster {
         dataSourceInfo?: string;
         dataSourceType?: string;
         fieldSeparator?: string;
+        thousandSeparator?: string;
         filename?: string;
         ignoreQuotedLineBreaks?: boolean;
         proxyUrl?: string;
